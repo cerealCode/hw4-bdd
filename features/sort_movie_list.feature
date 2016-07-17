@@ -22,9 +22,18 @@ Background: movies have been added to database
   And I am on the RottenPotatoes home page
 
 Scenario: sort movies alphabetically
-  When I follow "Movie Title"
-  # your steps here
+  When I check the following ratings: "PG, R, G, PG-13, NC-17"
+   And I press "ratings_submit"
+  Then I should see "Aladdin" before "Amelie"
 
 Scenario: sort movies in increasing order of release date
-  When I follow "Release Date"
-  # your steps here
+  When I check the following ratings: "PG, R, G, PG-13, NC-17"
+   And I press "ratings_submit"
+   And I follow "release_date_header"
+  Then I should see "1981-06-12 00:00:00 UTC" before "2004-11-05 00:00:00 UTC"
+  
+Scenario: sort movies in increasing order of title
+  When I check the following ratings: "PG, R, G, PG-13, NC-17"
+   And I press "ratings_submit"
+   And I follow "title_header"
+  Then I should see "2001: A Space Odyssey" before "Chicken Run"
