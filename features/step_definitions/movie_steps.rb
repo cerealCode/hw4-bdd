@@ -9,7 +9,7 @@ end
 
 
 Then /I should see "(.*)" before "(.*)"$/ do |e1, e2|
-  assert page.body =~ /#{e1}.*#{e2}/m
+ expect page.body =~ /#{e1}.*#{e2}/m 
 end
 
 # Make it easier to express checking or unchecking several boxes at once
