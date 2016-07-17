@@ -1,7 +1,9 @@
 
 Given /the following movies exist/ do |movies_table|
+  @row = 0
   movies_table.hashes.each do |movie|
     Movie.create!(movie)
+    @row += 1
   end
 end
 
@@ -38,3 +40,11 @@ end
 And(/^I should not see:$/) do |table|
   page should_have_no_content(table)
 end 
+
+Then /I should see all of the movies/ do
+  page.should have_css("table#movies tbody tr",:count => @row)
+end
+
+Then /I should not see all of the movies/ do
+  page.should have_no_css("table#movies tbody tr")
+end

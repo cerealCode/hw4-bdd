@@ -32,7 +32,7 @@ Scenario: restrict to movies with 'PG' or 'R' ratings
   When When I check the following ratings: "PG, R"
   And I uncheck the following ratings: "G, PG-13, NC-17"
   And I press 'ratings_submit'
-Then I should see "The Incredibles"
+  Then I should see "The Incredibles"
     And I should see "The Terminator"
     And I should see "When Harry Met Sally"
     And I should see "Amelie"
@@ -47,4 +47,9 @@ Then I should see "The Incredibles"
 
 
 Scenario: all ratings selected
-  # see assignment
+  When I check the following ratings: "PG, R, G, PG-13, NC-17"
+  And I press "ratings_submit"
+  Then I should see all of the movies
+
+
+  
